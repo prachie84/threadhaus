@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import SizeChartModal from './SizeChartModal';
+import ItemHighlights from './ItemHighlights';
 
 const product = {
   id: 1,
@@ -50,6 +52,7 @@ export default function ProductDetailClient() {
   const [added, setAdded] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description');
+  const [sizeChartOpen, setSizeChartOpen] = useState(false);
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
@@ -163,7 +166,13 @@ export default function ProductDetailClient() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-semibold text-foreground">Size</p>
-              <button className="label-tag text-accent hover:underline">Size Guide</button>
+              <button
+                onClick={() => setSizeChartOpen(true)}
+                className="label-tag text-accent hover:underline flex items-center gap-1"
+              >
+                <Icon name="RectangleGroupIcon" size={12} />
+                Size Chart
+              </button>
             </div>
             <div className="flex flex-wrap gap-2">
               {product.sizes.map((size) =>
@@ -184,6 +193,9 @@ export default function ProductDetailClient() {
             <p className="text-xs text-muted-foreground mt-2">Please select a size</p>
             }
           </div>
+
+          {/* Item Highlights */}
+          <ItemHighlights productId={product.id} />
 
           {/* Quantity */}
           <div className="flex items-center gap-4">
@@ -329,6 +341,14 @@ export default function ProductDetailClient() {
           )}
         </div>
       </div>
-    </div>);
 
+      {/* Size Chart Modal */}
+      {sizeChartOpen && (
+        <SizeChartModal
+          category={product.category}
+          onClose={() => setSizeChartOpen(false)}
+        />
+      )}
+    </div>
+  );
 }

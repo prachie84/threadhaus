@@ -21,6 +21,7 @@ const legalLinks = [
   { label: 'Terms of Service', href: '/terms' },
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Cookie Policy', href: '/privacy' },
+  { label: 'Help Center', href: '/help-center' },
   { label: 'Contact Us', href: '/contact' },
 ];
 

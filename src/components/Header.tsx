@@ -12,6 +12,7 @@ const navLinks = [
   { label: 'Children', href: '/products?category=children' },
   { label: 'New Arrivals', href: '/products?sort=newest' },
   { label: 'My Account', href: '/account-dashboard' },
+  { label: 'Help Center', href: '/help-center' },
 ];
 
 export default function Header() {
