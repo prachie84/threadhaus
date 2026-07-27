@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Men', href: '/products?category=men' },
   { label: 'Children', href: '/products?category=children' },
   { label: 'New Arrivals', href: '/products?sort=newest' },
+  { label: 'My Account', href: '/account-dashboard' },
 ];
 
 export default function Header() {
@@ -122,7 +123,7 @@ export default function Header() {
                   <span className="text-sm text-muted-foreground font-medium">Hi, {displayName}</span>
                   <button
                     onClick={handleSignOut}
-                    className="btn-outline text-xs py-2 px-4"
+                    className="btn-outline text-xs py-2 px-4 hover:bg-green-600 hover:border-green-600 hover:text-white"
                   >
                     Sign Out
                   </button>
@@ -130,7 +131,7 @@ export default function Header() {
               ) : (
                 <Link
                   href="/sign-up-login"
-                  className="hidden md:inline-flex btn-primary text-xs py-2 px-5"
+                  className="hidden md:inline-flex btn-primary text-xs py-2 px-5 bg-green-600 hover:bg-green-700"
                 >
                   Sign In
                 </Link>

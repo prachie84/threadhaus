@@ -27,8 +27,8 @@ export default function HeroSection() {
       
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl animate-float" />
-        <div className="absolute bottom-1/3 left-1/3 w-64 h-64 rounded-full bg-blue-400/15 blur-2xl" style={{animation: 'float 4s ease-in-out infinite 1s'}} />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-green-600/20 blur-3xl animate-float" />
+        <div className="absolute bottom-1/3 left-1/3 w-64 h-64 rounded-full bg-green-400/15 blur-2xl" style={{animation: 'float 4s ease-in-out infinite 1s'}} />
       </div>
 
       {/* Full-bleed image */}
@@ -60,9 +60,9 @@ export default function HeroSection() {
         {/* Main content */}
         <div className="max-w-2xl">
           <h1 className="hero-title text-primary-foreground mb-6 animate-in-delay-1">
-            Dress the<br />
+            Dress The<br />
             <span className="text-gradient-gold">Story</span>
-            <br />You Live.
+            <br />You Make.
           </h1>
 
           <p className="text-primary-foreground/70 text-lg max-w-md mb-10 leading-relaxed animate-in-delay-2">
@@ -74,7 +74,7 @@ export default function HeroSection() {
               Shop Now
               <Icon name="ArrowRightIcon" size={16} />
             </Link>
-            <Link href="/products?sort=newest" className="btn-outline border-white/30 text-primary-foreground hover:bg-accent/20 hover:border-accent">
+            <Link href="/products?sort=newest" className="btn-outline border-white/30 text-primary-foreground hover:bg-green-600/20 hover:border-green-400">
               New Arrivals
             </Link>
           </div>
