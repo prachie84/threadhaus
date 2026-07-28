@@ -6,13 +6,14 @@ import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
 import { useAuth } from '@/contexts/AuthContext';
 
-const navLinks = [
+const navLinks: { label: string; href: string; adminOnly?: boolean }[] = [
   { label: 'Women', href: '/products?category=women' },
   { label: 'Men', href: '/products?category=men' },
   { label: 'Children', href: '/products?category=children' },
   { label: 'New Arrivals', href: '/products?sort=newest' },
   { label: 'My Account', href: '/account-dashboard' },
   { label: 'Help Center', href: '/help-center' },
+  { label: 'Admin', href: '/admin', adminOnly: true },
 ];
 
 export default function Header() {
@@ -21,6 +22,7 @@ export default function Header() {
   const [cartCount] = useState(3);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
+  const isAdmin = user?.user_metadata?.role === 'admin' || user?.app_metadata?.role === 'admin';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -68,11 +70,14 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks?.map((link) => (
+            {navLinks?.filter(link => !link.adminOnly || isAdmin)?.map((link) => (
               <Link
                 key={link?.label}
                 href={link?.href}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors rounded-full hover:bg-accent/8"
+                className={`px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                  link.adminOnly
+                    ? 'text-green-400 hover:text-green-300 hover:bg-green-500/10' :'text-muted-foreground hover:text-accent hover:bg-accent/8'
+                }`}
               >
                 {link?.label}
               </Link>
@@ -174,12 +179,15 @@ export default function Header() {
         </div>
 
         <nav className="flex-1 p-5 space-y-1 overflow-y-auto">
-          {navLinks?.map((link) => (
+          {navLinks?.filter(link => !link.adminOnly || isAdmin)?.map((link) => (
             <Link
               key={link?.label}
               href={link?.href}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-foreground hover:bg-muted hover:text-accent transition-colors"
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                link.adminOnly
+                  ? 'text-green-400 hover:bg-green-500/10' :'text-foreground hover:bg-muted hover:text-accent'
+              }`}
             >
               {link?.label}
             </Link>
